@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Slack-lato";
+    src: url(https://cdx.slack-edge.com/9d38d/fonts/lato-1-compressed/lato-regular.woff2) format("truetype");
+}
+
+@font-face {
+  font-family: "Slack";
+  src: url(https://cdx.slack-edge.com/a4355/fonts/slack-icons-Regular.woff) format("truetype");
+}
+
+.client {
+  font-size: Slack-lato, Slack, verdana
+}

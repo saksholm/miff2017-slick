@@ -1,0 +1,9 @@
+.Channel {
+  flex: 0.8 1;
+  background-color: #FFFFFF;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}

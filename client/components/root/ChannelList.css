@@ -1,0 +1,30 @@
+.ChannelList {
+  font-size: 16pt;
+  text-decoration: none;
+}
+
+.ChannelList ul li {
+  color: white;
+  list-style: none;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.ChannelList ul li.channelActive {
+  background-color: #4C9689;
+  text-decoration: none;
+}
+
+.ChannelList ul .channelListLink {
+  text-decoration: none;
+}
+
+.ChannelList ul li span {
+  padding: 5px;
+  text-decoration: none;
+}
+
+.ChannelList .createChannel {
+  color: white;
+  text-decoration: none;
+}

@@ -36,6 +36,9 @@ class Channel extends React.Component {
     }
     return (
       <div className="Channel">
+        <div className="header">
+            <h1><span className="hashtag">#</span>{this.props.params.channelName}</h1>
+        </div>
         <ChannelMessages
           messages={this.props.data.messages}
         />

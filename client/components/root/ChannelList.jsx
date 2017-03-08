@@ -2,29 +2,14 @@ import React from 'react'
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
 import {Link} from 'react-router';
+import {Meteor} from 'meteor/meteor';
 
 class ChannelList extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      channels: [{ name: 'general', active: true }, { name: 'foobar', active: false }],
-    }
+  logout = () => {
+    Meteor.logout();
   }
-/*
-  changeChannel = (name) => {
 
-    const channels = this.state.channels.map( (channel) => {
-      if(channel.name  === name) {
-        return {name: channel.name, active: true}
-      } else {
-        return {name: channel.name, active: false}
-      }
-    });
-
-    this.setState({channels});
-  }
-*/
   render() {
     if(this.props.data.loading) {
       return <p>Loading...</p>
@@ -51,6 +36,7 @@ class ChannelList extends React.Component {
           )
         })}
         </ul>
+        <button className="logout" onClick={() => { this.logout() } }>Logout</button>
       </div>
     );
   }

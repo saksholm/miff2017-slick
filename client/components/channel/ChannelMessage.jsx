@@ -3,6 +3,7 @@ import timeago from 'timeago.js'
 
 export default class ChannelMessage extends React.Component {
   render() {
+
     const ta = new timeago().format(this.props.timestamp * 1000);
     return (
       <div className="ChannelMessage">

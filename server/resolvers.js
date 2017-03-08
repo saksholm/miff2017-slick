@@ -18,7 +18,7 @@ const resolvers = {
       return context.Channels.addChannel(newChannel);
     },
     post(obj, args, context) {
-      const newMessage = {handle: args.handle, message: args.message, channel: args.channel};
+      const newMessage = {handle: context.user.handle, message: args.message, channel: args.channel};
 
       return context.Channels.addMessage(newMessage);
     }

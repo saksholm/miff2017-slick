@@ -34,21 +34,15 @@ export class ChannelMessageForm extends React.Component {
         },
         updateQueries: {
           Channel: (previousResult, obj) => {
-            const foo = update(previousResult, {
+            return update(previousResult, {
               messages: {
                 $push: [obj.mutationResult.data.post],
               },
             });
 
-            console.log("new", foo);
-
-            return foo;
-
           },
         },
       });
-
-//      this.props.addNewMessage(this.state.newMessage);
 
       this.setState({newMessage: ''});
     }

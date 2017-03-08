@@ -1,6 +1,7 @@
 .ChannelList {
   font-size: 16pt;
   text-decoration: none;
+  font-family: Slack-lato;
 }
 
 .ChannelList ul li {
@@ -27,4 +28,17 @@
 .ChannelList .createChannel {
   color: white;
   text-decoration: none;
+}
+
+span.hashtag {
+  font-family: Slack;
+}
+
+
+.ChannelList .logout {
+  display: flex;
+  font-size: 16pt;
+  background-color: white;
+  align-self: center;
+  align-items: center;
 }

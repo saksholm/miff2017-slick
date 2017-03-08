@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import update from 'immutability-helper';
+import { browserHistory } from 'react-router';
 
 export class CreateChannel extends React.Component {
   constructor(props) {
@@ -16,9 +17,11 @@ export class CreateChannel extends React.Component {
     e.preventDefault();
     if(this.state.newChannel) {
 
+      const newChannelName = this.state.newChannel.toLowerCase();
+
       this.props.mutate({
         variables: {
-          name: this.state.newChannel
+          name: newChannelName
         },
         updateQueries: {
           ChannelList: (previousResult, obj) => {
@@ -32,6 +35,9 @@ export class CreateChannel extends React.Component {
       });
 
       this.setState({newChannel: ''});
+
+      browserHistory.push("/channel/" + newChannelName);
+
     }
 
   }

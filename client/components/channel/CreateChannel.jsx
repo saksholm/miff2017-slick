@@ -16,26 +16,10 @@ export class CreateChannel extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     if(this.state.newChannel) {
-
       const newChannelName = this.state.newChannel.toLowerCase();
 
-      this.props.mutate({
-        variables: {
-          name: newChannelName
-        },
-        updateQueries: {
-          ChannelList: (previousResult, obj) => {
-            return update(previousResult, {
-              channels: {
-                $push: [obj.mutationResult.data.createChannel]
-              }
-            });
-          }
-        }
-      });
-
+      this.props.submit(newChannelName);
       this.setState({newChannel: ''});
-
       browserHistory.push("/channel/" + newChannelName);
 
     }
@@ -87,4 +71,25 @@ const mutation = gql`
   }
 `;
 
-export default graphql(mutation)(CreateChannel);
+export default graphql(mutation, {
+  props: ({ mutate}) => {
+    return {
+      submit: (name) => {
+        mutate({
+          variables: {
+            name,
+          },
+          updateQueries: {
+            ChannelList: (previousResult, {mutationResult}) => {
+              return update(previousResult, {
+                channels: {
+                  $push: [mutationResult.data.createChannel]
+                },
+              });
+            },
+          },
+        });
+      }, // end of submit
+    }
+  }
+})(CreateChannel);

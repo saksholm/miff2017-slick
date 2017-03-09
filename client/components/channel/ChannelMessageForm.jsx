@@ -25,25 +25,7 @@ export class ChannelMessageForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     if(this.state.newMessage) {
-
-      this.props.mutate({
-        variables: {
-          channel: this.props.currentChannel,
-          message: this.state.newMessage,
-          handle: this.state.handle,
-        },
-        updateQueries: {
-          Channel: (previousResult, obj) => {
-            return update(previousResult, {
-              messages: {
-                $push: [obj.mutationResult.data.post],
-              },
-            });
-
-          },
-        },
-      });
-
+      this.props.submit(this.state.newMessage);
       this.setState({newMessage: ''});
     }
   };
@@ -74,11 +56,33 @@ export class ChannelMessageForm extends React.Component {
 
 
 const mutation = gql`
-  mutation post($channel: String!, $message: String!, $handle: String!) {
-    post(channel: $channel, message: $message, handle: $handle) {
+  mutation post($channel: String!, $message: String!) {
+    post(channel: $channel, message: $message) {
       _id handle message timestamp
     }
   }
 `;
 
-export default graphql(mutation)(ChannelMessageForm);
+export default graphql(mutation, {
+  props: ({mutate, ownProps}) => {
+    return {
+      submit: (message) => {
+        mutate({
+          variables: {
+            channel: ownProps.currentChannel,
+            message,
+          },
+          updateQueries: {
+            Channel: (previousResult, {mutationResult}) => {
+              return update(previousResult, {
+                messages: {
+                  $push: [mutationResult.data.post],
+                },
+              });
+            },
+          }, // updateQueries
+        }); // mutate
+      } // submit
+    } // return
+  } // props
+})(ChannelMessageForm);

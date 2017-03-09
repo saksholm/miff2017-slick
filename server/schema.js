@@ -19,7 +19,7 @@ type Query {
 }
 
 type Mutation {
-  post(channel: String!, message: String!, handle: String!): Message!
+  post(channel: String!, message: String!): Message!
   createChannel(name: String!): Channel!
 }
 

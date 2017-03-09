@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import update from 'immutability-helper';
 import { browserHistory } from 'react-router';
 
+
 export class CreateChannel extends React.Component {
   constructor(props) {
     super(props);
@@ -21,9 +22,7 @@ export class CreateChannel extends React.Component {
       this.props.submit(newChannelName);
       this.setState({newChannel: ''});
       browserHistory.push("/channel/" + newChannelName);
-
     }
-
   }
 
   render() {
@@ -41,7 +40,7 @@ export class CreateChannel extends React.Component {
             value={this.state.private}
             onChange={() => this.setState({private: !this.state.private})}
           />
-        &lt;  -- LOL... not implemented yet :DD
+        &lt;-- LOL... not implemented yet :DD
         </div>
         <form className="form" onSubmit={this.onSubmit}>
           New channel name #
